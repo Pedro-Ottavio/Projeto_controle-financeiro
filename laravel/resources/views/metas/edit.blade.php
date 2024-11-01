@@ -1,4 +1,3 @@
-
 @extends('layout')
 
 @section('content')
@@ -14,6 +13,13 @@
         <div class="form-group">
             <label for="valor_meta">Valor</label>
             <input type="number" step="0.01" class="form-control" id="valor_meta" name="valor_meta" value="{{ $meta->valor_meta }}" required>
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="não atingida" {{ $meta->status == 'não atingida' ? 'selected' : '' }}>Não Atingida</option>
+                <option value="atingida" {{ $meta->status == 'atingida' ? 'selected' : '' }}>Atingida</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>

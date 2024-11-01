@@ -17,6 +17,11 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             @guest
+            
+                <li class="nav-item">
+                    <a id="hiddenButton" class="nav-link hidden-button" style="display: none" onclick="location.href='{{ route('listagem') }}'">Listagem</a>
+                </li>     
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('loginForm') }}">Login</a>
                 </li>
@@ -24,6 +29,10 @@
                     <a class="nav-link" href="{{ route('registroForm') }}">Registrar</a>
                 </li>
             @else
+                <li class="nav-item">
+                    <a id="hiddenButton" class="nav-link hidden-button" style="display: none" onclick="location.href='{{ route('listagem') }}'">Listagem</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                 </li>

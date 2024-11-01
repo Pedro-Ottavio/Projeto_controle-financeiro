@@ -25,7 +25,13 @@ class MetaFinanceiraController extends Controller
             'valor_meta' => 'required|numeric',
         ]);
 
-        MetaFinanceira::create($request->all());
+        MetaFinanceira::create([
+            'usuario_id' => auth()->user()->id,
+            'tipo_meta' => $request->tipo_meta,
+            'valor_meta' => $request->valor_meta,
+            'status' => 'não atingida',
+        ]);
+
         return redirect()->route('metas.index')->with('success', 'Meta financeira criada com sucesso!');
     }
 
@@ -39,9 +45,15 @@ class MetaFinanceiraController extends Controller
         $request->validate([
             'tipo_meta' => 'required|string|max:255',
             'valor_meta' => 'required|numeric',
+            'status' => 'required|string',
         ]);
 
-        $meta->update($request->all());
+        $meta->update([
+            'tipo_meta' => $request->tipo_meta,
+            'valor_meta' => $request->valor_meta,
+            'status' => $request->status,
+        ]);
+
         return redirect()->route('metas.index')->with('success', 'Meta financeira atualizada com sucesso!');
     }
 

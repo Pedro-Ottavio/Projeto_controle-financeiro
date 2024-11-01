@@ -24,7 +24,11 @@ class CategoriaController extends Controller
             'nome' => 'required|string|max:255',
         ]);
 
-        Categoria::create($request->all());
+        Categoria::create([
+            'usuario_id' => auth()->user()->id,  // Adiciona o ID do usuário autenticado
+            'nome' => $request->nome,
+        ]);
+
         return redirect()->route('categorias.index')->with('success', 'Categoria criada com sucesso!');
     }
 
@@ -39,7 +43,10 @@ class CategoriaController extends Controller
             'nome' => 'required|string|max:255',
         ]);
 
-        $categoria->update($request->all());
+        $categoria->update([
+            'nome' => $request->nome,
+        ]);
+
         return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso!');
     }
 

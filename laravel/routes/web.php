@@ -18,9 +18,17 @@ Route::post('login', [UsuarioController::class, 'login'])->name('login');
 
 Route::post('logout', [UsuarioController::class, 'logout'])->name('logout');
 
-// Rotas protegidas por autenticação
+
 Route::group(['middleware' => 'auth'], function () {
+    
     Route::resource('transacoes', TransacaoController::class);
+
     Route::resource('metas', MetaFinanceiraController::class);
+    
     Route::resource('categorias', CategoriaController::class);
 });
+
+// Rota para a página de listagem
+Route::get('listagem', function () {
+    return view('listagem');
+})->name('listagem');
