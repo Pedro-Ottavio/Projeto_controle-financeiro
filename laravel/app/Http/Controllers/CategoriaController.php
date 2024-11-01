@@ -9,7 +9,12 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = Categoria::all();
+        // Obtém o ID do usuário autenticado
+        $usuarioId = auth()->id();
+
+        // Filtra as categorias pelo usuario_id
+        $categorias = Categoria::where('usuario_id', $usuarioId)->get();
+
         return view('categorias.index', compact('categorias'));
     }
 

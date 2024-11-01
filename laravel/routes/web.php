@@ -18,7 +18,6 @@ Route::post('login', [UsuarioController::class, 'login'])->name('login');
 
 Route::post('logout', [UsuarioController::class, 'logout'])->name('logout');
 
-
 Route::group(['middleware' => 'auth'], function () {
     
     Route::resource('transacoes', TransacaoController::class);

@@ -1,10 +1,17 @@
-
 @extends('layout')
 
 @section('content')
 <div class="container">
     <h1 class="my-4">Lista de Transações</h1>
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <a href="{{ route('transacoes.create') }}" class="btn btn-primary mb-3">Adicionar Nova Transação</a>
+
     <table class="table table-striped">
         <thead>
             <tr>
