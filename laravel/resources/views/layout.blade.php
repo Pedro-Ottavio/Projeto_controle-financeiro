@@ -8,54 +8,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
-    
-    <style>
-        /* Flexbox layout to push footer down */
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+    @vite('resources/css/app.css')
 
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-        }
-
-        .container {
-            flex: 1;
-            padding-bottom: 60px; /* Adjust this value based on footer height */
-        }
-
-        footer {
-            background-color: #343a40;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-            margin-top: auto; /* Push the footer to the bottom */
-        }
-
-        /* Style for the hidden button */
-        .hidden-button {
-            display: block; /* Keeps the button hidden */
-        }
-
-        .fixed-bottom-right {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            z-index: 1000;
-            color: #343a40;
-        }
-        .credito {
-            color: green;
-        }
-
-        .debito {
-            color: red;
-        }
-
-    </style>
 </head>
 <body>
 
