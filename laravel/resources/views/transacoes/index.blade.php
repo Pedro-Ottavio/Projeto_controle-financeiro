@@ -12,6 +12,10 @@
 
     <a href="{{ route('transacoes.create') }}" class="btn btn-primary mb-3">Adicionar Nova Transação</a>
 
+    <a href="{{ route('transacoes.relatorio', ['usuario_id' => auth()->id()]) }}" class="btn btn-info mb-3">Ver Relatório</a>
+
+    
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -25,7 +29,9 @@
         <tbody>
             @foreach($transacoes as $transacao)
                 <tr>
-                    <td>{{ $transacao->tipo }}</td>
+                    <td class="{{ $transacao->tipo == 'Credito' ? 'credito' : 'debito' }}">
+                        {{ $transacao->tipo }}
+                    </td>
                     <td>{{ $transacao->valor }}</td>
                     <td>{{ $transacao->data }}</td>
                     <td>{{ $transacao->categoria }}</td>

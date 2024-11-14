@@ -7,6 +7,7 @@ use App\Http\Controllers\MetaFinanceiraController;
 use App\Http\Controllers\CategoriaController;
 
 
+
 Route::get('/', function () {return view('welcome');});
 
 
@@ -19,8 +20,10 @@ Route::post('login', [UsuarioController::class, 'login'])->name('login');
 Route::post('logout', [UsuarioController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
-    
+
     Route::resource('transacoes', TransacaoController::class);
+    Route::get('transacoes/relatorio/{usuario_id}', [TransacaoController::class, 'relatorio'])->name('transacoes.relatorio');
+
 
     Route::resource('metas', MetaFinanceiraController::class);
     

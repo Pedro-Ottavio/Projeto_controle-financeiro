@@ -8,9 +8,16 @@
         @method('PUT')
         
         <!-- Tipo Field -->
-        <div class="form-group">
-            <label for="tipo">Tipo</label>
-            <input type="text" class="form-control" id="tipo" name="tipo" value="{{ $transacao->tipo }}" required>
+        <div class="form-group" style="font-size: 20px">
+            <label for="tipo">Tipo</label><br>
+            <div class="form-check">
+                <input type="radio" id="entrada" name="tipo" value="Credito" required
+                style="margin-left: 20px">
+                <label for="Credito" style="color: rgba(10, 137, 10, 0.87)">Credito</label>
+                <input type="radio" id="saida" name="tipo" value="Debito"
+                style="margin-left: 20px">
+                <label for="Debito" style="color: red">Debito</label>
+            </div>
         </div>
         
         <!-- Valor Field -->
@@ -28,8 +35,14 @@
         <!-- Categoria Field -->
         <div class="form-group">
             <label for="categoria">Categoria</label>
-            <input type="text" class="form-control" id="categoria" name="categoria" value="{{ $transacao->categoria }}" required>
+            <select class="form-control" id="categoria" name="categoria" required>
+                <option value="" disabled selected>Selecione uma Categoria</option>
+                @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->nome }}">{{ $categoria->nome }}</option>
+                @endforeach
+            </select>
         </div>
+        
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
