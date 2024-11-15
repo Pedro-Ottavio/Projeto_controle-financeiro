@@ -35,14 +35,17 @@
                 
                 <tbody>
                     @foreach($transacoes as $transacao)
-                        <tr>
+                        <tr >
+
                             <!-- Aplica a classe CSS dependendo do valor do tipo -->
                             <td class="{{ $transacao->tipo == 'Credito' ? 'credito' : 'debito' }}">
                                 {{ $transacao->tipo }}
                             </td>
-                            <td>{{ $transacao->valor }}</td>
-                            <td>{{ $transacao->data }}</td>
-                            
+
+                            <td>{{ 'R$ ' . number_format($transacao->valor, 2, ',', '.') }}</td>
+                       
+                            <td>{{ \Carbon\Carbon::parse($transacao->data)->translatedFormat('d \\d\\e F \\d\\e Y') }}</td>
+
                         </tr>
                     @endforeach
                 </tbody>

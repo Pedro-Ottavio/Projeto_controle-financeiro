@@ -13,7 +13,7 @@ class CategoriaController extends Controller
         $usuarioId = auth()->id();
 
         // Filtra as categorias pelo usuario_id
-        $categorias = Categoria::where('usuario_id', $usuarioId)->get();
+        $categorias = Categoria::where('usuario_id', $usuarioId)->orderBy('id', 'asc')->get();
 
         return view('categorias.index', compact('categorias'));
     }

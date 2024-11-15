@@ -10,9 +10,11 @@
         </div>
     @endif
 
-    <a href="{{ route('transacoes.create') }}" class="btn btn-primary mb-3">Adicionar Nova Transação</a>
-
-    <a href="{{ route('transacoes.relatorio', ['usuario_id' => auth()->id()]) }}" class="btn btn-info mb-3">Ver Relatório</a>
+    <!-- Botões de Ação -->
+    <div class="mb-3">
+        <a href="{{ route('transacoes.create') }}" class="btn btn-primary">Adicionar Nova Transação</a>
+        <a href="{{ route('transacoes.relatorio', ['usuario_id' => auth()->id()]) }}" class="btn btn-info">Ver Relatório</a>
+    </div>
 
     
 
@@ -29,13 +31,17 @@
         <tbody>
             @foreach($transacoes as $transacao)
                 <tr>
-                    <td class="{{ $transacao->tipo == 'Credito' ? 'credito' : 'debito' }}">
-                        {{ $transacao->tipo }}
-                    </td>
-                    <td>{{ $transacao->valor }}</td>
-                    <td>{{ $transacao->data }}</td>
-                    <td>{{ $transacao->categoria }}</td>
-                    <td>
+                        <td class="{{ $transacao->tipo == 'Credito' ? 'credito' : 'debito' }}">
+                            {{ $transacao->tipo }}
+                        </td>
+                        <td>{{ 'R$ ' . number_format($transacao->valor, 2, ',', '.') }}</td>
+                       
+                        <!-- Formatação de data usando Carbon -->
+                        <td>{{ \Carbon\Carbon::parse($transacao->data)->translatedFormat('d \\d\\e F \\d\\e Y') }}</td>
+
+
+                        <td>{{ $transacao->categoria }}</td>
+                        <td>
                         <a href="{{ route('transacoes.edit', $transacao->id) }}" class="btn btn-warning btn-sm">Editar</a>
                         <form action="{{ route('transacoes.destroy', $transacao->id) }}" method="POST" style="display:inline">
                             @csrf
